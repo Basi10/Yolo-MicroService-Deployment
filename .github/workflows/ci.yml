@@ -21,6 +21,6 @@ jobs:
       - name: Build the Docker image
         run: docker build -t adludio-yolo-challenge .
       - name: Tag the docker file
-      - run: docker tag adludio-yolo-challenge basilel/adludio-yolo-challenge:latest
+        run: docker tag adludio-yolo-challenge basilel/adludio-yolo-challenge:latest
       - name: Push to Dockerhub
         run: docker push basilel/adludio-yolo-challenge:latest
