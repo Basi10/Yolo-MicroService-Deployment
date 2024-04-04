@@ -1,4 +1,4 @@
-FROM ultralytics/yolov5:latest-arm64
+FROM ultralytics/yolov5:latest
 
 # Copy model and application files
 WORKDIR /app
