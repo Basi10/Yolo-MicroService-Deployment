@@ -1,10 +1,18 @@
 from flask import Flask, request, jsonify
 from script.yolo import YoloModelWrapper
+from script.s3_modelstorage import S3ModelStorage
 
 app = Flask(__name__)
+s3_storage = S3ModelStorage()
+
+#Retrieves the model from S3 bucket
+bucket_name = 'adludio-bucket'
+local_model_path = 'model/new.pt'
+s3_key = 'new.pt'
+s3_storage.retrieve_model_to_disk(bucket_name,s3_key,local_model_path)
+
+
 yolo_wrapper = YoloModelWrapper()
-
-
 
 @app.route('/infer', methods=['POST'])
 def infer_image():

@@ -1,9 +1,11 @@
+import os
 import torch
 import pandas as pd
 
 class YoloModelWrapper:
     def __init__(self):
-        self.model = torch.hub.load('ultralytics/yolov5', 'custom','../model/new.ptnew.pt')
+        abs_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../model/new.pt')
+        self.model = torch.hub.load('ultralytics/yolov5', 'custom',abs_path)
 
     def infer_image(self, img):
         """
