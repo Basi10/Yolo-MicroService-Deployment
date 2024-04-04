@@ -1,0 +1,19 @@
+name: EC2 CD
+
+on:
+  workflow_run:
+    workflows: ["Docker Image CI"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull Docker image
+        run: sudo docker pull basilel/adludio-yolo-challenge:latest
+      - name: Delete old docker container
+        run: sudo docker rm -f basilel/adludio-yolo-challenge-container || true
+      - name: Run Docker container
+        run: docker run -d -p 8000:8000 --name basilel/adludio-yolo-challenge-container basilel/adludio-yolo-challenge
